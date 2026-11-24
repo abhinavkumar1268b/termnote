@@ -82,7 +82,29 @@ vercel env add NEXT_PUBLIC_SUPABASE_URL production
 vercel --prod
 ```
 
-## 6. Post-deploy verification
+## 6. Current deployment
+
+- **Production URL:** https://termnote-iota.vercel.app
+- **Vercel project:** `abhinavkumar1268bs-projects/termnote`
+- **GitHub repo:** https://github.com/abhinavkumar1268b/termnote
+- Environment variables set for Production: `NEXT_PUBLIC_SUPABASE_URL`,
+  `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL`
+  (https://termnote-iota.vercel.app).
+- Verified after deploy: `/login` returns 200; `/notes` returns 307 redirect for
+  unauthenticated visitors (Supabase env is active).
+- Automatic Git deploys are not connected because the Vercel GitHub app is not
+  authorized for this repository. Deploy with `vercel --prod`, or authorize the
+  app in Vercel settings and run `vercel git connect`.
+
+**Manual step still required in Supabase:** set Site URL to
+`https://termnote-iota.vercel.app` and add redirect URLs:
+`https://termnote-iota.vercel.app/auth/confirm`,
+`https://termnote-iota.vercel.app/reset-password`, and
+`https://termnote-iota.vercel.app/**`. The migration token lacked
+`auth_config_write`, so this could not be set via the Management API. Without
+it, email confirmation and password-reset links will not redirect correctly.
+
+## 7. Post-deploy verification
 
 - Sign up, confirm email, sign in, sign out, reset password.
 - Create a nested folder, note, upload, preview/download.
@@ -91,7 +113,7 @@ vercel --prod
 - Run `node scripts/audit.mjs` with `base` pointed at the production URL
   (use a throwaway Supabase project — it creates and deletes users).
 
-## 7. Operational notes
+## 8. Operational notes
 
 - Storage bucket `note-files` is private; all access is via server-generated
   signed URLs. No public bucket URLs exist.
