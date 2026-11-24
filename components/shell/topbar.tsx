@@ -12,10 +12,12 @@ export function Topbar({
   onOpenMobile,
   user,
   workspaceName,
+  showCommand = true,
 }: {
   onOpenMobile: () => void;
   user: SessionUser | null;
   workspaceName?: string;
+  showCommand?: boolean;
 }) {
   const pathname = usePathname();
 
@@ -37,7 +39,7 @@ export function Topbar({
       </div>
 
       <div className="flex min-w-0 flex-1 justify-center">
-        <CommandConsole />
+        {showCommand ? <CommandConsole /> : null}
       </div>
 
       <div className="flex shrink-0 items-center gap-3">

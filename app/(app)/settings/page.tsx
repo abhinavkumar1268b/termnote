@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { DataErrorState, SetupNotice } from "@/components/ui/data-state";
 import { PageHeader } from "@/components/ui/page-header";
 import { StorageUsage } from "@/features/dashboard/components/storage-usage";
+import { SettingsBackButton } from "@/features/settings/components/settings-back-button";
 import { SettingsRow, SettingsSection } from "@/features/settings/components/settings-section";
 import { getWorkspaceSummary } from "@/lib/data/queries";
 import { getSessionUser } from "@/lib/data/session";
@@ -27,13 +28,18 @@ export default async function SettingsPage() {
 
   return (
     <>
-      <PageHeader eyebrow="Preferences" title="Settings" description="Workspace and account details." />
+      <PageHeader
+        eyebrow="Preferences"
+        title="Settings"
+        description="Account, usage and privacy details. Theme is fixed in this build."
+        leading={<SettingsBackButton />}
+      />
       {error ? (
         error.includes("not configured") ? <SetupNotice /> : <DataErrorState message={error} />
       ) : (
         <div className="grid gap-6 xl:grid-cols-2">
           <div className="space-y-6">
-            <SettingsSection title="Profile" meta="from Supabase Auth">
+            <SettingsSection title="Profile" meta="read only · Supabase Auth">
               <SettingsRow label="Name">{session.data?.name ?? "—"}</SettingsRow>
               <SettingsRow label="Email">{session.data?.email ?? "—"}</SettingsRow>
               <SettingsRow label="Role"><Badge variant="accent">{session.data?.role ?? "—"}</Badge></SettingsRow>

@@ -44,7 +44,12 @@ export function AppShell({
       />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <Topbar onOpenMobile={() => setMobileOpen(true)} user={user} workspaceName={user?.workspaceName} />
+        <Topbar
+          onOpenMobile={() => setMobileOpen(true)}
+          user={user}
+          workspaceName={user?.workspaceName}
+          showCommand={pathname !== "/settings"}
+        />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           <div className="mx-auto w-full max-w-6xl">{children}</div>
         </main>

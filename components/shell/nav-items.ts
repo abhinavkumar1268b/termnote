@@ -1,4 +1,4 @@
-import { FileText, Files, Folder, Share2, Star, Trash2 } from "lucide-react";
+import { FileText, Files, Folder, Settings2, Share2, Star, Trash2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export interface NavItem {
@@ -23,6 +23,10 @@ export const NAV_GROUPS: ReadonlyArray<{ title: string; items: readonly NavItem[
       { label: "Shared", href: "/shared", icon: Share2 },
       { label: "Trash", href: "/trash", icon: Trash2 },
     ],
+  },
+  {
+    title: "SYSTEM",
+    items: [{ label: "Settings", href: "/settings", icon: Settings2 }],
   },
 ];
 
