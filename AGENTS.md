@@ -75,13 +75,17 @@ Use compatible stable versions.
 
 ## UI Rules
 
-- Background: #080D16
-- Sidebar: #0C1422
-- Surface: #101C2D
-- Accent: #4C9DFF
-- Text: #E6EEF9
-- Muted: #8395AE
-- Border: #20334D
+- Background: #05070B
+- Sidebar: #090E17
+- Surface: #0D1420
+- Elevated surface: #111C2B
+- Neon blue: #168BFF
+- Bright blue: #43A5FF
+- Primary text: #F5F8FF
+- Secondary text: #8995A8
+- Border: #1B2A3D
+- Success: #42D6A4
+- Error: #FF647C
 
 Use JetBrains Mono for terminal elements.
 Use Inter for application content.

@@ -8,10 +8,10 @@ const base =
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-term-accent disabled:cursor-not-allowed disabled:opacity-50";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-term-accent text-term-bg hover:bg-term-accent/85",
-  secondary: "border border-term-border bg-term-elevated text-term-text hover:border-term-accent/60",
-  ghost: "text-term-muted hover:bg-term-elevated hover:text-term-text",
-  danger: "border border-red-500/30 text-red-300 hover:bg-red-500/10",
+  primary: "bg-term-accent text-term-bg hover:bg-term-bright",
+  secondary: "border border-term-border bg-term-elevated/60 text-term-text hover:border-term-accent/60 hover:text-term-text",
+  ghost: "text-term-muted hover:bg-term-elevated/60 hover:text-term-text",
+  danger: "border border-term-error/30 text-term-error hover:bg-term-error/10",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

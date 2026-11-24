@@ -7,3 +7,4 @@ export * from "./trash";
 export * from "./editor";
 export * from "./sharing";
 export * from "./library";
+export * from "./natural";

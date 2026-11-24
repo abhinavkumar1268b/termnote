@@ -110,12 +110,12 @@ function isValidHttpUrl(value: string): boolean {
 
 function StatusLabel({ status, savedAt, message }: { status: string; savedAt: string | null; message: string | null }) {
   const map: Record<string, { icon: typeof Check; text: string; className: string }> = {
-    idle: { icon: Check, text: "All changes saved", className: "text-emerald-400" },
-    saved: { icon: Check, text: "Saved", className: "text-emerald-400" },
-    unsaved: { icon: Clock, text: "Unsaved changes", className: "text-amber-300" },
+    idle: { icon: Check, text: "All changes saved", className: "text-term-success" },
+    saved: { icon: Check, text: "Saved", className: "text-term-success" },
+    unsaved: { icon: Clock, text: "Unsaved changes", className: "text-term-bright" },
     saving: { icon: RefreshCw, text: "Saving…", className: "text-term-accent" },
-    error: { icon: Clock, text: "Save failed — retrying", className: "text-red-300" },
-    conflict: { icon: Clock, text: "Newer content exists", className: "text-red-300" },
+    error: { icon: Clock, text: "Save failed — retrying", className: "text-term-error" },
+    conflict: { icon: Clock, text: "Newer content exists", className: "text-term-error" },
   };
   const item = map[status] ?? map.idle;
   const Icon = item.icon;
@@ -333,8 +333,8 @@ export function NoteEditor({
         </div>
 
         {status === "conflict" ? (
-          <div className="flex items-center justify-between gap-3 border-b border-red-500/30 bg-red-500/5 px-5 py-3">
-            <p className="text-xs text-red-300">{message}</p>
+          <div className="flex items-center justify-between gap-3 border-b border-term-error/30 bg-term-error/5 px-5 py-3">
+            <p className="text-xs text-term-error">{message}</p>
             <Button size="sm" onClick={() => router.refresh()}><RefreshCw className="size-3.5" aria-hidden="true" /> Reload</Button>
           </div>
         ) : null}
@@ -434,3 +434,4 @@ export function NoteEditor({
     </>
   );
 }
+

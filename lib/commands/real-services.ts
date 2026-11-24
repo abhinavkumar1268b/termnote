@@ -73,7 +73,16 @@ export const realCommandServices: CommandServices = {
         .slice(0, limit);
     },
     async get(id) {
-      const note = await getNote(id);
+      let note = await getNote(id);
+      if (!note.data) {
+        // Human-readable titles are used by the natural command aliases.
+        const listed = await listNotes();
+        const needle = id.toLowerCase();
+        const match = (listed.data ?? []).find(
+          (item) => item.title.toLowerCase() === needle || item.title.toLowerCase().startsWith(needle),
+        );
+        if (match) note = { data: match, error: null };
+      }
       if (!note.data) return null;
       const folders = await listFolders();
       const folderName = (folders.data ?? []).find((folder) => folder.id === note.data?.folderId)?.name ?? "Unfiled";
@@ -91,6 +100,7 @@ export const realCommandServices: CommandServices = {
     async list() {
       const [folders, notes] = await Promise.all([listFolders(), listNotes()]);
       return (folders.data ?? []).map((folder) => ({
+        id: folder.id,
         name: folder.name,
         parentId: folder.parentId,
         noteCount: (notes.data ?? []).filter((note) => note.folderId === folder.id).length,

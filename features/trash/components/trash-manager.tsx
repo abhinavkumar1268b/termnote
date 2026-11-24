@@ -54,7 +54,7 @@ export function TrashManager({ items }: { items: TrashItem[] }) {
         <Button size="sm" variant="danger" disabled={busy || items.length === 0} onClick={() => void empty()}>
           <Trash2 className="size-3.5" aria-hidden="true" /> Empty trash
         </Button>
-        {error ? <p role="alert" className="rounded border border-red-500/30 px-3 py-2 text-xs text-red-300">{error}</p> : null}
+        {error ? <p role="alert" className="rounded border border-term-error/30 px-3 py-2 text-xs text-term-error">{error}</p> : null}
         {notice ? <p className="rounded border border-term-border px-3 py-2 text-xs text-term-text">{notice}</p> : null}
       </div>
       <Card>
@@ -80,3 +80,4 @@ export function TrashManager({ items }: { items: TrashItem[] }) {
     </>
   );
 }
+

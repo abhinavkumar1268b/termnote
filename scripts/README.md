@@ -12,6 +12,7 @@ node scripts/verify-app.mjs
 node scripts/verify-library.mjs
 node scripts/verify-sharing.mjs
 node scripts/audit.mjs
+node scripts/verify-home.mjs
 ```
 
 `verify-app.mjs` expects the dev server on `http://localhost:2333` (change

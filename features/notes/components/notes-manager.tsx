@@ -68,9 +68,10 @@ export function NotesManager({ notes, folderNames }: { notes: Note[]; folderName
         {hits !== null ? <Button size="sm" variant="ghost" onClick={() => { setHits(null); setTerm(""); }}>Clear</Button> : null}
         <Button size="sm" onClick={() => void create()} disabled={busy}><FilePlus2 className="size-3.5" aria-hidden="true" /> New note</Button>
       </div>
-      {error ? <p role="alert" className="mb-4 rounded border border-red-500/30 px-3 py-2 text-xs text-red-300">{error}</p> : null}
+      {error ? <p role="alert" className="mb-4 rounded border border-term-error/30 px-3 py-2 text-xs text-term-error">{error}</p> : null}
       {hits !== null && hits.length === 0 ? <p className="mb-4 text-sm text-term-muted">No notes matched “{term}”.</p> : null}
       <NoteList notes={visible} folderNames={folderNames} actions />
     </div>
   );
 }
+

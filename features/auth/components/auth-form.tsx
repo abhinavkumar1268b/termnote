@@ -58,7 +58,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         </div>
 
         {state.error ? (
-          <p role="alert" className="rounded-md border border-red-500/30 bg-red-500/5 px-3 py-2 text-xs leading-relaxed text-red-300">
+          <p role="alert" className="rounded-md border border-term-error/30 bg-term-error/5 px-3 py-2 text-xs leading-relaxed text-term-error">
             {state.error}
           </p>
         ) : null}
@@ -98,3 +98,4 @@ export function AuthPrivacyNote() {
     </p>
   );
 }
+

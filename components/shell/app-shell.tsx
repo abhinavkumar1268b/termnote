@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import type { SessionUser } from "@/lib/data/session";
 import type { WorkspaceStatus } from "@/types/domain";
@@ -15,8 +16,12 @@ export function AppShell({
   user: SessionUser | null;
   status: WorkspaceStatus | null;
 }) {
+  const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // The terminal-first home is a focused screen without a dominant sidebar.
+  if (pathname === "/") return <>{children}</>;
 
   return (
     <div className="flex h-screen overflow-hidden bg-term-bg">
@@ -41,7 +46,7 @@ export function AppShell({
       <div className="flex min-w-0 flex-1 flex-col">
         <Topbar onOpenMobile={() => setMobileOpen(true)} user={user} />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <div className="mx-auto w-full max-w-7xl">{children}</div>
+          <div className="mx-auto w-full max-w-6xl">{children}</div>
         </main>
       </div>
     </div>

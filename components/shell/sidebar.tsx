@@ -29,15 +29,17 @@ export function Sidebar({ collapsed, onToggleCollapse, mobileOpen, onCloseMobile
       className={cn(
         "fixed inset-y-0 left-0 z-50 flex shrink-0 flex-col border-r border-term-border bg-term-sidebar transition-[width,transform] duration-150",
         "md:static md:z-auto md:translate-x-0",
-        collapsed ? "w-64 md:w-16" : "w-64",
+        collapsed ? "w-56 md:w-14" : "w-56",
         mobileOpen ? "translate-x-0" : "-translate-x-full",
       )}
     >
       <div className="flex h-14 shrink-0 items-center gap-2 border-b border-term-border px-4">
-        <Terminal className="size-4 shrink-0 text-term-accent" aria-hidden="true" />
-        {showLabels ? (
-          <span className="flex-1 font-mono text-sm font-medium tracking-widest text-term-text">TERMNOTE</span>
-        ) : null}
+        <Link href="/" className="flex min-w-0 flex-1 items-center gap-2" aria-label="TermNote home">
+          <Terminal className="size-4 shrink-0 text-term-accent" aria-hidden="true" />
+          {showLabels ? (
+            <span className="truncate font-mono text-sm font-semibold tracking-[0.18em] text-term-accent">TERMNOTE</span>
+          ) : null}
+        </Link>
         <button
           type="button"
           onClick={onToggleCollapse}
@@ -85,9 +87,6 @@ export function Sidebar({ collapsed, onToggleCollapse, mobileOpen, onCloseMobile
                     >
                       <Icon className="size-4 shrink-0" aria-hidden="true" />
                       {showLabels ? <span className="flex-1 truncate">{item.label}</span> : null}
-                      {showLabels && item.badge ? (
-                        <span className="font-mono text-[10px] text-term-muted/70">{item.badge}</span>
-                      ) : null}
                     </Link>
                   </li>
                 );

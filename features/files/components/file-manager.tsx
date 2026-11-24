@@ -67,7 +67,7 @@ export function FileManager({
         <p className="w-full font-mono text-[10px] text-term-muted">Max {Math.round(maxUploadBytes / 1024 / 1024)} MB · MIME types validated on the server · private bucket</p>
       </form>
 
-      {error ? <p role="alert" className="mb-4 rounded border border-red-500/30 px-3 py-2 text-xs text-red-300">{error}</p> : null}
+      {error ? <p role="alert" className="mb-4 rounded border border-term-error/30 px-3 py-2 text-xs text-term-error">{error}</p> : null}
       {notice ? <p className="mb-4 rounded border border-term-border px-3 py-2 text-xs text-term-text">{notice}</p> : null}
 
       <div className="mb-4 flex flex-wrap gap-1.5">
@@ -86,3 +86,4 @@ export function FileManager({
     </div>
   );
 }
+

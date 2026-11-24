@@ -36,7 +36,7 @@ export function VersionTimeline({ versions, canRestore }: { versions: NoteVersio
 
   return (
     <div className="space-y-3">
-      {error ? <p role="alert" className="rounded border border-red-500/30 px-3 py-2 text-xs text-red-300">{error}</p> : null}
+      {error ? <p role="alert" className="rounded border border-term-error/30 px-3 py-2 text-xs text-term-error">{error}</p> : null}
       {notice ? <p className="rounded border border-term-border px-3 py-2 text-xs text-term-text">{notice}</p> : null}
 
       {versions.map((version, index) => {
@@ -82,3 +82,4 @@ export function VersionTimeline({ versions, canRestore }: { versions: NoteVersio
     </div>
   );
 }
+

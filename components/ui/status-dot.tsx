@@ -5,7 +5,7 @@ export function StatusDot({ tone = "success" }: { tone?: "success" | "muted" }) 
     <span
       className={cn(
         "size-1.5 shrink-0 rounded-full",
-        tone === "success" ? "bg-emerald-400" : "bg-term-muted",
+        tone === "success" ? "bg-term-success" : "bg-term-muted",
       )}
       aria-hidden="true"
     />

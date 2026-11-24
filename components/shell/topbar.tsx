@@ -1,6 +1,7 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, Settings2 } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Avatar } from "@/components/ui/avatar";
 import { StatusDot } from "@/components/ui/status-dot";
@@ -41,7 +42,10 @@ export function Topbar({ onOpenMobile, user }: { onOpenMobile: () => void; user:
           <p className="text-xs font-medium text-term-text">{user?.name ?? "Not signed in"}</p>
           <p className="font-mono text-[10px] text-term-muted">{user?.role ?? "Setup required"}</p>
         </div>
-        <Avatar initials={user?.initials ?? "--"} />
+        <Link href="/settings" aria-label="Settings" className="inline-flex size-7 items-center justify-center rounded text-term-muted hover:bg-term-elevated hover:text-term-accent">
+          <Settings2 className="size-3.5" aria-hidden="true" />
+        </Link>
+        <Avatar initials={user?.initials ?? "--"} className="size-7" />
       </div>
     </header>
   );

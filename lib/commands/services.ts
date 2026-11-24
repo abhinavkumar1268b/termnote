@@ -50,8 +50,8 @@ export interface CommandServices {
     versions(id: string): Promise<Array<{ label: string; summary: string; createdLabel: string }>>;
   };
   folders: {
-    list(): Promise<Array<{ name: string; parentId: string | null; noteCount: number }>>;
-    get(name: string): Promise<{ name: string; noteCount: number } | null>;
+    list(): Promise<Array<{ id: string; name: string; parentId: string | null; noteCount: number }>>;
+    get(name: string): Promise<{ id: string; name: string; noteCount: number } | null>;
   };
   files: {
     list(kind?: string): Promise<ServiceFile[]>;
@@ -129,7 +129,10 @@ export const mockCommandServices: CommandServices = {
         .map(asServiceNote);
     },
     async get(id) {
-      const note = getNoteById(id) ?? mockNotes.find((item) => item.title.toLowerCase() === id.toLowerCase());
+      const needle = id.toLowerCase();
+      const note = getNoteById(id) ?? mockNotes.find((item) =>
+        item.title.toLowerCase() === needle || item.title.toLowerCase().startsWith(needle),
+      );
       return note ? asServiceNote(note) : null;
     },
     async star(id) {
@@ -144,11 +147,11 @@ export const mockCommandServices: CommandServices = {
   },
   folders: {
     async list() {
-      return mockFolders.map((folder) => ({ name: folder.name, parentId: folder.parentId, noteCount: folder.noteCount }));
+      return mockFolders.map((folder) => ({ id: folder.id, name: folder.name, parentId: folder.parentId, noteCount: folder.noteCount }));
     },
     async get(name) {
       const folder = mockFolders.find((item) => item.name.toLowerCase() === name.toLowerCase());
-      return folder ? { name: folder.name, noteCount: folder.noteCount } : null;
+      return folder ? { id: folder.id, name: folder.name, noteCount: folder.noteCount } : null;
     },
   },
   files: {

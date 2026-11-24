@@ -72,6 +72,15 @@ types/          Shared domain types
 tests/          Unit tests
 ```
 
+## Terminal commands
+
+The command engine accepts both namespaced commands (`note create`, `folder list`)
+and short natural forms: `create file "Ideas"`, `create subfolder "Frontend" inside "Projects"`,
+`open "Ideas"`, `rename "Ideas" to "Ideas 2026"`, `move "Ideas" to "Personal"`,
+`delete "Ideas"`, `search "term"`, `show recent|starred|trash|files|shared`,
+`upload file` and `help`. Destructive commands ask for confirmation. All commands
+run through the same server-side validation, RLS and service adapters as the UI.
+
 ## Deployment
 
 See `DEPLOYMENT.md` for Vercel + Supabase production setup, required

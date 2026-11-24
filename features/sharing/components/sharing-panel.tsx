@@ -140,7 +140,7 @@ export function SharingPanel({
         <CardMeta>private by default</CardMeta>
       </CardHeader>
       <CardContent className="space-y-5">
-        {error ? <p role="alert" className="rounded border border-red-500/30 px-3 py-2 text-xs text-red-300">{error}</p> : null}
+        {error ? <p role="alert" className="rounded border border-term-error/30 px-3 py-2 text-xs text-term-error">{error}</p> : null}
         {notice ? <p className="rounded border border-term-border px-3 py-2 text-xs text-term-text">{notice}</p> : null}
 
         {canManage ? (
@@ -220,3 +220,4 @@ export function SharingPanel({
     </Card>
   );
 }
+

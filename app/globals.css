@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-term-bg: #080d16;
-  --color-term-sidebar: #0c1422;
-  --color-term-surface: #101c2d;
-  --color-term-elevated: #14243a;
-  --color-term-accent: #4c9dff;
-  --color-term-text: #e6eef9;
-  --color-term-muted: #8395ae;
-  --color-term-border: #20334d;
+  --color-term-bg: #05070b;
+  --color-term-sidebar: #090e17;
+  --color-term-surface: #0d1420;
+  --color-term-elevated: #111c2b;
+  --color-term-accent: #168bff;
+  --color-term-bright: #43a5ff;
+  --color-term-text: #f5f8ff;
+  --color-term-muted: #8995a8;
+  --color-term-border: #1b2a3d;
+  --color-term-success: #42d6a4;
+  --color-term-error: #ff647c;
 }
 
 /* Fonts are self-hosted by next/font; no requests leave the app at runtime. */

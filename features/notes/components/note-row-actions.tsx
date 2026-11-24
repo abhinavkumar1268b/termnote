@@ -27,7 +27,7 @@ export function NoteRowActions({ note }: { note: Note }) {
 
   return (
     <div className="flex shrink-0 items-center gap-0.5">
-      {error ? <span role="alert" title={error} className="mr-1 max-w-40 truncate text-[10px] text-red-300">{error}</span> : null}
+      {error ? <span role="alert" title={error} className="mr-1 max-w-40 truncate text-[10px] text-term-error">{error}</span> : null}
       <button type="button" disabled={busy} className={buttonClass} title={note.starred ? "Unstar" : "Star"} aria-label={note.starred ? "Unstar note" : "Star note"}
         onClick={() => void run(() => setStarAction({ type: "note", id: note.id, starred: !note.starred }))}>
         <Star className={note.starred ? "size-3.5 fill-term-accent text-term-accent" : "size-3.5"} aria-hidden="true" />
@@ -55,3 +55,4 @@ export function NoteRowActions({ note }: { note: Note }) {
     </div>
   );
 }
+

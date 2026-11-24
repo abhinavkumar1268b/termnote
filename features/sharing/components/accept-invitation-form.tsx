@@ -38,7 +38,7 @@ export function AcceptInvitationForm({ token }: { token: string }) {
             <FieldLabel htmlFor="invite-token">Invitation token</FieldLabel>
             <Input id="invite-token" value={value} onChange={(event) => setValue(event.target.value)} className="font-mono text-[11px]" required />
           </div>
-          {error ? <p role="alert" className="text-xs text-red-300">{error}</p> : null}
+          {error ? <p role="alert" className="text-xs text-term-error">{error}</p> : null}
           <Button type="submit" variant="primary" className="w-full" disabled={busy}>
             <Check className="size-4" aria-hidden="true" /> {busy ? "Checking…" : "Accept invitation"}
           </Button>
@@ -48,3 +48,4 @@ export function AcceptInvitationForm({ token }: { token: string }) {
     </Card>
   );
 }
+

@@ -15,9 +15,9 @@ describe("autocomplete", () => {
     );
   });
 
-  it("suggests expected argument values", () => {
+  it("suggests expected argument placeholders", () => {
     const suggestions = autocomplete("note open ");
-    expect(suggestions.some((item) => item.kind === "argument" && item.value === "n-001")).toBe(true);
+    expect(suggestions.some((item) => item.kind === "argument" && item.value === "<id>")).toBe(true);
   });
 
   it("suggests flags with their descriptions", () => {
@@ -27,14 +27,14 @@ describe("autocomplete", () => {
   });
 
   it("shows argument placeholders with descriptions", () => {
-    const suggestion = autocomplete("note open ").find((item) => item.value === "n-001");
+    const suggestion = autocomplete("note open ").find((item) => item.value === "<id>");
     expect(suggestion?.kind).toBe("argument");
     expect(suggestion?.description).toContain("<id>");
   });
 
-  it("suggests values for string flags", () => {
+  it("suggests flag placeholders without sample data", () => {
     const suggestions = autocomplete("note list --folder In");
-    expect(suggestions.some((item) => item.value === "Inbox" && item.kind === "argument")).toBe(true);
+    expect(suggestions.some((item) => item.value === "<folder>" && item.kind === "argument")).toBe(true);
   });
 
   it("offers close matches for unknown commands", () => {

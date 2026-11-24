@@ -39,7 +39,7 @@ export function ResetPasswordForm({ mode }: { mode: "request" | "update" }) {
             </>
           )}
 
-          {state.error ? <p role="alert" className="text-xs text-red-300">{state.error}</p> : null}
+          {state.error ? <p role="alert" className="text-xs text-term-error">{state.error}</p> : null}
           {state.message ? <p className="text-xs text-term-text">{state.message}</p> : null}
 
           <Button type="submit" variant="primary" className="w-full" disabled={pending}>
@@ -53,3 +53,4 @@ export function ResetPasswordForm({ mode }: { mode: "request" | "update" }) {
     </Card>
   );
 }
+

@@ -52,7 +52,7 @@ export function FileRowActions({ file }: { file: StoredFile }) {
 
   return (
     <div className="flex shrink-0 items-center gap-0.5">
-      {error ? <span role="alert" title={error} className="mr-1 max-w-40 truncate text-[10px] text-red-300">{error}</span> : null}
+      {error ? <span role="alert" title={error} className="mr-1 max-w-40 truncate text-[10px] text-term-error">{error}</span> : null}
       {previewable ? (
         <button type="button" disabled={busy} className={buttonClass} title="Preview" aria-label={`Preview ${file.name}`} onClick={() => void openUrl(false)}>
           <Eye className="size-3.5" aria-hidden="true" />
@@ -80,3 +80,4 @@ export function FileRowActions({ file }: { file: StoredFile }) {
     </div>
   );
 }
+

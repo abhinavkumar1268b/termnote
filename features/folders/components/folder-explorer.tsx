@@ -172,7 +172,7 @@ export function FolderExplorer({
             <Button size="sm" onClick={() => void move()} disabled={busy || !selectedFolder}><MoveRight className="size-3.5" aria-hidden="true" /> Move</Button>
             <Button size="sm" variant="danger" onClick={() => void remove()} disabled={busy || !selectedFolder}><Trash2 className="size-3.5" aria-hidden="true" /> Trash</Button>
           </div>
-          {error ? <p role="alert" className="mb-3 rounded border border-red-500/30 px-2 py-1.5 text-xs text-red-300">{error}</p> : null}
+          {error ? <p role="alert" className="mb-3 rounded border border-term-error/30 px-2 py-1.5 text-xs text-term-error">{error}</p> : null}
           {notice ? <p className="mb-3 rounded border border-term-border px-2 py-1.5 text-xs text-term-text">{notice}</p> : null}
           <ul className="space-y-0.5">
             {tree.map((node) => (
@@ -203,3 +203,4 @@ export function FolderExplorer({
     </div>
   );
 }
+

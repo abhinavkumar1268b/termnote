@@ -81,7 +81,7 @@ function argumentSuggestions(definition: CommandDefinition, index: number, prefi
       {
         value: `<${argument.name}>`,
         label: `<${argument.name}>`,
-        description: `${argument.description} · expected argument`,
+        description: `<${argument.name}> · ${argument.description}`,
         insertText: `${prefix ? "" : ""}`,
         kind: "argument",
       },
@@ -203,7 +203,7 @@ export function autocomplete(input: string, limit = 8): Suggestion[] {
           kind: "argument" as const,
         })).slice(0, limit);
       }
-      if (flag.values === undefined) {
+      if (!flag.values || flag.values.length === 0) {
         return [
           {
             value: `<${flag.name}>`,
