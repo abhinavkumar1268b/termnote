@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-term-bg: #080d16;
+  --color-term-sidebar: #0c1422;
+  --color-term-surface: #101c2d;
+  --color-term-elevated: #14243a;
+  --color-term-accent: #4c9dff;
+  --color-term-text: #e6eef9;
+  --color-term-muted: #8395ae;
+  --color-term-border: #20334d;
+}
+
+/* Fonts are self-hosted by next/font; no requests leave the app at runtime. */
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+@layer components {
+  .tiptap-content {
+    min-height: 52vh;
+    outline: none;
+    color: var(--color-term-text);
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .tiptap-content p {
+    margin-bottom: 0.75rem;
+  }
+
+  .tiptap-content h1,
+  .tiptap-content h2,
+  .tiptap-content h3 {
+    color: var(--color-term-text);
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  .tiptap-content h1 { font-size: 1.5rem; }
+  .tiptap-content h2 { font-size: 1.125rem; }
+  .tiptap-content h3 { font-size: 1rem; }
+
+  .tiptap-content ul,
+  .tiptap-content ol {
+    margin-bottom: 0.75rem;
+    padding-left: 1.25rem;
+  }
+
+  .tiptap-content ul { list-style: disc; }
+  .tiptap-content ol { list-style: decimal; }
+
+  .tiptap-content code {
+    border-radius: 0.25rem;
+    background: var(--color-term-elevated);
+    color: var(--color-term-accent);
+    padding: 0.125rem 0.25rem;
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.75rem;
+  }
+
+  .tiptap-content blockquote {
+    border-left: 2px solid var(--color-term-accent);
+    color: var(--color-term-muted);
+    padding-left: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tiptap-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.8125rem;
+  }
+
+  .tiptap-content th,
+  .tiptap-content td {
+    border: 1px solid var(--color-term-border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .tiptap-content th {
+    background: var(--color-term-elevated);
+    font-weight: 600;
+  }
+
+  .tiptap-content pre {
+    background: var(--color-term-bg);
+    border: 1px solid var(--color-term-border);
+    border-radius: 0.375rem;
+    margin-bottom: 0.75rem;
+    overflow-x: auto;
+    padding: 0.75rem;
+    font-family: var(--font-jetbrains-mono), monospace;
+    font-size: 0.75rem;
+  }
+
+  .tiptap-content img,
+  .tiptap-content .editor-image {
+    max-width: 100%;
+    border: 1px solid var(--color-term-border);
+    border-radius: 0.375rem;
+    margin: 0.75rem 0;
+  }
+
+  .tiptap-content a {
+    color: var(--color-term-accent);
+    text-decoration: underline;
+  }
+
+  .tiptap-content inline-math,
+  .tiptap-content block-math {
+    color: var(--color-term-accent);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-term-border);
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-term-bg);
+    color: var(--color-term-text);
+  }
+}
