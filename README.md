@@ -81,6 +81,12 @@ and short natural forms: `create file "Ideas"`, `create subfolder "Frontend" ins
 `upload file` and `help`. Destructive commands ask for confirmation. All commands
 run through the same server-side validation, RLS and service adapters as the UI.
 
+The command input supports `Ctrl+K` to focus, `↑/↓` for history, `Tab` to accept a
+suggestion (without executing it), `Enter` to run, and `Esc` to close suggestions.
+Typing a command name shows ready-to-edit examples such as
+`create file "name"` and `open folder "folder name"`. `clear` (or the output
+panel's Clear control) clears only visible terminal output.
+
 ## Deployment
 
 See `DEPLOYMENT.md` for Vercel + Supabase production setup, required

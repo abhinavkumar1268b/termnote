@@ -70,6 +70,8 @@ export interface CommandDefinition {
   action: string;
   description: string;
   usage: string;
+  /** Ready-to-edit example commands shown by autocomplete. */
+  examples?: string[];
   /** Join all remaining arguments into the final argument (for titles/names). */
   joinArgs?: boolean;
   args: CommandArgument[];
@@ -85,4 +87,5 @@ export interface Suggestion {
   description: string;
   insertText: string;
   kind: "command" | "argument" | "flag";
+  hint?: string;
 }

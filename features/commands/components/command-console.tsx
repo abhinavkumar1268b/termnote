@@ -74,7 +74,7 @@ export function CommandConsole({ panelId = "command-console-panel" }: { panelId?
                       >
                         <span className="flex items-center gap-2">
                           <span className="font-mono text-xs text-term-accent">{suggestion.label}</span>
-                          <span className="font-mono text-[9px] uppercase text-term-muted">{suggestion.kind}</span>
+                          <span className="font-mono text-[9px] uppercase text-term-muted/70">{suggestion.hint ?? suggestion.kind}</span>
                         </span>
                         <span className="truncate text-[11px] text-term-muted">{suggestion.description}</span>
                       </button>
@@ -115,7 +115,7 @@ export function CommandConsole({ panelId = "command-console-panel" }: { panelId?
             ))}
           </div>
           <div className="flex items-center gap-2 border-t border-term-border px-3 py-2 font-mono text-[10px] text-term-muted">
-            <CornerDownLeft className="size-3" aria-hidden="true" /> Enter run · Tab complete · ↑↓ navigate · Esc close
+            <CornerDownLeft className="size-3" aria-hidden="true" /> Enter run · Tab complete · ↑↓ history · Ctrl+K focus · Esc close
           </div>
         </div>
       ) : null}

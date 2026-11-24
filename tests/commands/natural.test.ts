@@ -79,7 +79,21 @@ describe("natural commands", () => {
 
   it("offers natural commands in autocomplete", () => {
     const suggestions = autocomplete("create ");
-    expect(suggestions.some((item) => item.value === "create")).toBe(true);
-    expect(autocomplete("show ").some((item) => item.value === "show")).toBe(true);
+    expect(suggestions.some((item) => item.value.startsWith("create "))).toBe(true);
+    expect(autocomplete("show ").some((item) => item.value.startsWith("show "))).toBe(true);
+  });
+
+  it("suggests ready-to-edit examples while typing a command name", () => {
+    const create = autocomplete("create");
+    expect(create.map((item) => item.label)).toEqual(
+      expect.arrayContaining(['create file "name"', 'create folder "name"', 'create subfolder "name" inside "folder"']),
+    );
+    expect(create[0].insertText).toContain("create file");
+    expect(create[0].hint).toContain("Tab");
+
+    const open = autocomplete("open");
+    expect(open.map((item) => item.label)).toEqual(
+      expect.arrayContaining(['open "note name"', 'open folder "folder name"', "open recent"]),
+    );
   });
 });

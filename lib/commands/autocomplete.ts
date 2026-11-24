@@ -44,7 +44,19 @@ function commandSuggestion(command: CommandDefinition, insertText?: string): Sug
     description: `${command.description} · ${command.usage}`,
     insertText: insertText ?? `${command.id} `,
     kind: "command",
+    hint: "Tab to accept",
   };
+}
+
+function exampleSuggestions(command: CommandDefinition): Suggestion[] {
+  return (command.examples ?? []).map((example) => ({
+    value: example,
+    label: example,
+    description: command.description,
+    insertText: `${example} `,
+    kind: "command" as const,
+    hint: "Tab to accept · Enter to run",
+  }));
 }
 
 function subcommandSuggestions(namespace: string, prefix: string): Suggestion[] {
@@ -144,10 +156,12 @@ export function autocomplete(input: string, limit = 8): Suggestion[] {
       const suggestions = subcommandSuggestions(first, "");
       if (suggestions.length > 0) return suggestions.slice(0, limit);
     }
-    const matches = listCommands()
+    const matchingCommands = listCommands()
       .filter((command) => command.id.startsWith(first.toLowerCase()))
-      .slice(0, limit)
-      .map((command) => commandSuggestion(command));
+      .slice(0, limit);
+    const examples = matchingCommands.flatMap((command) => exampleSuggestions(command));
+    if (examples.length > 0) return examples.slice(0, limit);
+    const matches = matchingCommands.map((command) => commandSuggestion(command));
     if (matches.length > 0) return matches;
 
     return closestCommands(first, limit).map((id) => {

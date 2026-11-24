@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { autocomplete } from "@/lib/commands/autocomplete";
 import { CommandHistory } from "@/lib/commands/history";
 import type { CommandResult, Suggestion } from "@/lib/commands/types";
@@ -42,6 +42,19 @@ export function useCommandSession() {
 
   const suggestions = useMemo<Suggestion[]>(() => autocomplete(query), [query]);
 
+  useEffect(() => {
+    function onGlobalKeyDown(event: globalThis.KeyboardEvent) {
+      if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== "k") return;
+      const element = inputRef.current;
+      if (!element || element.offsetParent === null) return;
+      event.preventDefault();
+      element.focus();
+      setOpen(true);
+    }
+    window.addEventListener("keydown", onGlobalKeyDown);
+    return () => window.removeEventListener("keydown", onGlobalKeyDown);
+  }, [inputRef, setOpen]);
+
   const setQuery = useCallback((value: string) => {
     setQueryState(value);
     setSuggestionIndex(-1);
@@ -78,7 +91,12 @@ export function useCommandSession() {
     }
 
     const kind = result.ok ? "success" : "error";
-    result.output.forEach((line) => lines.push(makeLine(line, kind)));
+    result.output.forEach((line, index) => {
+      let text = line;
+      if (index === 0 && kind === "success" && !/^[✓✔]/.test(text)) text = `✓ ${text}`;
+      if (index === 0 && kind === "error" && !/^(✗|Error|✕)/.test(text)) text = `✗ ${text}`;
+      lines.push(makeLine(text, kind));
+    });
     setOutput((current) => [...lines, ...current].slice(0, 80));
     setQuery("");
 
@@ -157,17 +175,15 @@ export function useCommandSession() {
       setSuggestionIndex(-1);
       return;
     }
+    // Arrows are reserved for history; Tab/Enter handle suggestions.
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      if (suggestionIndex < suggestions.length - 1) setSuggestionIndex(suggestionIndex + 1);
-      else nextHistory();
+      nextHistory();
       return;
     }
     if (event.key === "ArrowUp") {
       event.preventDefault();
-      if (suggestionIndex > 0) setSuggestionIndex(suggestionIndex - 1);
-      else if (suggestionIndex === 0) setSuggestionIndex(-1);
-      else previousHistory();
+      previousHistory();
     }
   }, [acceptSuggestion, nextHistory, previousHistory, query, run, suggestionIndex, suggestions]);
 
