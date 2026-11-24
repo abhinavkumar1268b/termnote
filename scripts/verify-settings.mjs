@@ -6,7 +6,7 @@ for (const line of fs.readFileSync(".env.local", "utf8").split(/\r?\n/)) {
   const match = line.match(/^([^#][^=]*)=(.*)$/);
   if (match) env[match[1].trim()] = match[2].trim();
 }
-const base = "http://localhost:2333";
+const base = process.env.AUDIT_BASE_URL ?? "http://localhost:2333";
 const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } });
 const anon = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.NEXT_PUBLIC_SUPABASE_ANON_KEY, { auth: { persistSession: false } });
 const suffix = Date.now();
