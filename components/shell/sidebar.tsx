@@ -1,10 +1,11 @@
 "use client";
 
-import { LogOut, PanelLeftClose, PanelLeftOpen, Terminal, X } from "lucide-react";
+import { LogOut, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 import Link from "next/link";
 import { logoutAction } from "@/app/auth-actions";
 import { usePathname } from "next/navigation";
 import { Avatar } from "@/components/ui/avatar";
+import { BrandMark } from "@/components/ui/brand-mark";
 import { cn } from "@/lib/utils";
 import type { SessionUser } from "@/lib/data/session";
 import type { WorkspaceStatus } from "@/types/domain";
@@ -34,11 +35,8 @@ export function Sidebar({ collapsed, onToggleCollapse, mobileOpen, onCloseMobile
       )}
     >
       <div className="flex h-14 shrink-0 items-center gap-2 border-b border-term-border px-4">
-        <Link href="/" className="flex min-w-0 flex-1 items-center gap-2" aria-label="TermNote home">
-          <Terminal className="size-4 shrink-0 text-term-accent" aria-hidden="true" />
-          {showLabels ? (
-            <span className="truncate font-mono text-sm font-semibold tracking-[0.18em] text-term-accent">TERMNOTE</span>
-          ) : null}
+        <Link href="/" className="flex min-w-0 flex-1 items-center" aria-label="TermNote home">
+          {showLabels ? <BrandMark size="sm" className="truncate" /> : <span className="size-2 bg-term-accent" aria-hidden="true" />}
         </Link>
         <button
           type="button"

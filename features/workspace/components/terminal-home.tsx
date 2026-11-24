@@ -1,12 +1,11 @@
 "use client";
 
-import { ArrowUp, Check, Circle, HardDrive, LogOut, Settings2 } from "lucide-react";
-import Link from "next/link";
+import { ArrowUp, Check, Circle, HardDrive } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { logoutAction } from "@/app/auth-actions";
 import { uploadFileAction } from "@/app/library-actions";
-import { Avatar } from "@/components/ui/avatar";
+import { ProfileMenu } from "@/components/shell/profile-menu";
+import { BrandMark } from "@/components/ui/brand-mark";
 import { ActionLauncher } from "@/features/commands/components/action-launcher";
 import { useCommandSession } from "@/features/commands/hooks/use-command-session";
 import { cn } from "@/lib/utils";
@@ -57,31 +56,20 @@ export function TerminalHome({
 
   return (
     <div className="relative flex min-h-screen flex-col bg-term-bg text-term-text">
-      <header className="flex h-14 shrink-0 items-center justify-end gap-2 border-b border-term-border px-4 sm:px-6">
-        <span className="mr-auto font-mono text-[10px] uppercase tracking-[0.22em] text-term-muted/70">
-          TERMNOTE / WORKSPACE
-        </span>
-        <Link href="/settings" aria-label="Settings" className="inline-flex size-8 items-center justify-center rounded-md text-term-muted hover:bg-term-elevated hover:text-term-accent">
-          <Settings2 className="size-4" aria-hidden="true" />
-        </Link>
-        <div className="hidden items-center gap-2 sm:flex">
-          <Avatar initials={user?.initials ?? "--"} className="size-7" />
-          <span className="max-w-32 truncate text-xs text-term-text">{user?.name ?? "Not signed in"}</span>
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-term-border px-4 sm:px-6">
+        <div className="flex items-center gap-3">
+          <BrandMark size="sm" />
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-term-muted/70 sm:inline">
+            / workspace
+          </span>
         </div>
-        <form action={logoutAction}>
-          <button type="submit" aria-label="Sign out" title="Sign out" className="inline-flex size-8 items-center justify-center rounded-md text-term-muted hover:bg-term-elevated hover:text-term-error">
-            <LogOut className="size-4" aria-hidden="true" />
-          </button>
-        </form>
-        <div className="sm:hidden">
-          <Avatar initials={user?.initials ?? "--"} className="size-7" />
-        </div>
+        <ProfileMenu user={user} workspaceName={workspaceName} compact />
       </header>
 
       <main className="flex flex-1 items-center justify-center px-3 py-10 sm:px-6">
         <div className="w-full max-w-2xl">
           <div className="mb-8 text-center sm:mb-10">
-            <h1 className="font-mono text-4xl font-bold tracking-[-0.04em] text-term-accent sm:text-6xl">TERMNOTE</h1>
+            <BrandMark size="lg" />
             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-term-muted sm:text-xs">
               private · command-driven · yours
             </p>
@@ -90,7 +78,7 @@ export function TerminalHome({
           <div className="relative">
             <div
               className={cn(
-                "flex items-center gap-2 rounded-lg border bg-term-surface/70 p-2 transition-colors",
+                "flex items-center gap-2 rounded-md border bg-term-sidebar/60 p-2 transition-colors duration-200",
                 open ? "border-term-accent" : "border-term-border hover:border-term-accent/40",
               )}
             >

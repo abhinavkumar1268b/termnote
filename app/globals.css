@@ -133,4 +133,15 @@
     background-color: var(--color-term-bg);
     color: var(--color-term-text);
   }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-term-accent) 30%, transparent);
+    color: var(--color-term-text);
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 1px solid var(--color-term-accent);
+    outline-offset: 2px;
+  }
 }

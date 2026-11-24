@@ -1,15 +1,22 @@
 "use client";
 
-import { Menu, Settings2 } from "lucide-react";
-import Link from "next/link";
+import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Avatar } from "@/components/ui/avatar";
 import { StatusDot } from "@/components/ui/status-dot";
 import { CommandConsole } from "@/features/commands/components/command-console";
 import type { SessionUser } from "@/lib/data/session";
+import { ProfileMenu } from "./profile-menu";
 import { sectionLabel } from "./nav-items";
 
-export function Topbar({ onOpenMobile, user }: { onOpenMobile: () => void; user: SessionUser | null }) {
+export function Topbar({
+  onOpenMobile,
+  user,
+  workspaceName,
+}: {
+  onOpenMobile: () => void;
+  user: SessionUser | null;
+  workspaceName?: string;
+}) {
   const pathname = usePathname();
 
   return (
@@ -38,14 +45,7 @@ export function Topbar({ onOpenMobile, user }: { onOpenMobile: () => void; user:
           <StatusDot tone={user ? "success" : "muted"} />
           <span className="font-mono text-[10px] text-term-muted">{user ? "synced" : "offline"}</span>
         </div>
-        <div className="hidden text-right sm:block">
-          <p className="text-xs font-medium text-term-text">{user?.name ?? "Not signed in"}</p>
-          <p className="font-mono text-[10px] text-term-muted">{user?.role ?? "Setup required"}</p>
-        </div>
-        <Link href="/settings" aria-label="Settings" className="inline-flex size-7 items-center justify-center rounded text-term-muted hover:bg-term-elevated hover:text-term-accent">
-          <Settings2 className="size-3.5" aria-hidden="true" />
-        </Link>
-        <Avatar initials={user?.initials ?? "--"} className="size-7" />
+        <ProfileMenu user={user} workspaceName={workspaceName} compact />
       </div>
     </header>
   );

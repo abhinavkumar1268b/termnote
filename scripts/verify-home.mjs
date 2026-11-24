@@ -28,6 +28,8 @@ try {
     statusRow: html.includes("Connected") || html.includes("Setup required"),
     noDominantSidebar: !html.includes("All Notes</span>"),
     newAccent: html.includes("text-term-accent"),
+    profileMenu: html.includes("Profile menu"),
+    largeWordmark: html.includes("text-5xl") && html.includes("text-6xl"),
   };
   for (const [label, ok] of Object.entries(checks)) console.log(`${ok ? "PASS" : "FAIL"} ${label}`);
 } finally {
